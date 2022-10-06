@@ -6,7 +6,7 @@
 #    By: rvan-aud <rvan-aud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/04 17:47:22 by rvan-aud          #+#    #+#              #
-#    Updated: 2022/10/04 17:58:38 by rvan-aud         ###   ########.fr        #
+#    Updated: 2022/10/06 16:34:38 by rvan-aud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRCS		= $(SRCS_DIR)/ft_read.s	\
 
 CC			= gcc
 
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -D STD=${STD}
 
 NASM		= nasm
 
@@ -42,8 +42,6 @@ all:		$(NAME)
 
 $(NAME):	$(OBJS)
 			ar rcs $(NAME_LIB) $(OBJS)
-
-compile:
 			$(CC) $(CFLAGS) main.c $(NAME_LIB) -o $(NAME)
 
 clean:

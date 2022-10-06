@@ -1,0 +1,6 @@
+https://www.bencode.net/blob/nasmcheatsheet.pdf
+https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf
+https://cs.lmu.edu/~ray/notes/nasmtutorial/
+https://www.cs.uaf.edu/2017/fall/cs301/lecture/09_11_registers.html
+https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/
+https://filippo.io/making-system-calls-from-assembly-in-mac-os-x/

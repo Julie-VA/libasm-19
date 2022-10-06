@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:50:22 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/10/04 18:23:50 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:37:34 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,40 +15,106 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <string.h>
+
+#if STD
 
 int main() {
-	/* ft_strlen */
-	//printf("%zu\n", ft_strlen("Test"));
-	//printf("%zu\n", ft_strlen(""));
+	printf("*** ft_strlen ***\n");
+	printf("Should be 4 -> %zu\n", strlen("Test"));
+	printf("Should be 0 -> %zu\n", strlen(""));
 
-	/* ft_strcpy */
-	//char	*dest;
-	//printf("|%s|\n|%s|\n", ft_strcpy(dest, "Test"), dest);
-	//printf("|%s|\n|%s|\n", ft_strcpy(dest, ""), dest);
+	printf("\n*** ft_strcpy ***\n");
+	char	dest[10];
+	printf("|%s|\n|%s|\n", strcpy(dest, "Test"), dest);
+	printf("|%s|\n|%s|\n", strcpy(dest, ""), dest);
 
-	/* ft_strcmp */
-	//printf("Should be 0 -> %d\n", ft_strcmp("Test", "Test"));
-	//printf("Should be 1 -> %d\n", ft_strcmp("Test", "Tes"));
-	//printf("Should be -1 -> %d\n", ft_strcmp("", "Test"));
-	//printf("Should be 0 -> %d\n", ft_strcmp("", ""));
+	printf("\n*** ft_strcmp ***\n");
+	printf("Should be 0 -> %d\n", strcmp("Test", "Test"));
+	printf("Should be 1 -> %d\n", strcmp("Test", "TesT"));
+	printf("Should be 1 -> %d\n", strcmp("Hello", "\n\n\f\r\t"));
+	printf("Should be 1 -> %d\n", strcmp("Test", "Tes"));
+	printf("Should be -1 -> %d\n", strcmp("", "Test"));
+	printf("Should be 0 -> %d\n", strcmp("", ""));
 
-	/* ft_write */
-	printf("%zd\n", ft_write(1, "Test\n", 5));
-	printf("errno = %d", errno);
-	printf("%zd\n", ft_write(1, "Test\n", 3));
-	printf("errno = %d", errno);
+	printf("\n*** ft_write ***\n");
+	printf("ret = %zd\n", write(1, "Test\n", 3));
+	printf("errno = %d\n", errno);
+	printf("ret = %zd\n", write(-1, "Test\n", 5));
+	printf("errno = %d\n", errno);
 
-	/* ft_read */
-	//char	*buf;
-	//printf("%zd\n", ft_read(0, buf, 10));
+	printf("\n*** ft_read ***\n");
+	char	buf[100];
+	printf("ret = %zd\n", read(0, buf, 10));
+	printf("errno = %d\n", errno);
+	printf("ret = %zd\n", read(-1, buf, 10));
+	printf("errno = %d\n", errno);
 
-	/* ft_strdup */
-	//char	*ret;
-	//ret = ft_strdup("Test\n");
-	//printf("%s", ret);
-	//free(ret);
-	//ret = ft_strdup("");
-	//printf("%s", ret);
-	//free(ret);
+	printf("\n*** ft_strdup ***\n");
+	char	*ret;
+	ret = strdup("Test\n");
+	if (ret)
+	{
+		printf("%s", ret);
+		free(ret);
+	}
+	ret = strdup("");
+	if (ret)
+	{
+		printf("%s", ret);
+		free(ret);
+	}
 	return 0;
 }
+
+#else
+
+int main() {
+	printf("*** ft_strlen ***\n");
+	printf("Should be 4 -> %zu\n", ft_strlen("Test"));
+	printf("Should be 0 -> %zu\n", ft_strlen(""));
+
+	printf("\n*** ft_strcpy ***\n");
+	char	dest[10];
+	printf("|%s|\n|%s|\n", ft_strcpy(dest, "Test"), dest);
+	printf("|%s|\n|%s|\n", ft_strcpy(dest, ""), dest);
+
+	printf("\n*** ft_strcmp ***\n");
+	printf("Should be 0 -> %d\n", ft_strcmp("Test", "Test"));
+	printf("Should be 1 -> %d\n", ft_strcmp("Test", "TesT"));
+	printf("Should be 1 -> %d\n", ft_strcmp("Hello", "\n\n\f\r\t"));
+	printf("Should be 1 -> %d\n", ft_strcmp("Test", "Tes"));
+	printf("Should be -1 -> %d\n", ft_strcmp("", "Test"));
+	printf("Should be 0 -> %d\n", ft_strcmp("", ""));
+
+	printf("\n*** ft_write ***\n");
+	printf("ret = %zd\n", ft_write(1, "Test\n", 3));
+	printf("errno = %d\n", errno);
+	printf("ret = %zd\n", ft_write(-1, "Test\n", 5));
+	printf("errno = %d\n", errno);
+
+	printf("\n*** ft_read ***\n");
+	char	buf[100];
+	printf("ret = %zd\n", ft_read(0, buf, 10));
+	printf("errno = %d\n", errno);
+	printf("ret = %zd\n", ft_read(-1, buf, 10));
+	printf("errno = %d\n", errno);
+
+	printf("\n*** ft_strdup ***\n");
+	char	*ret;
+	ret = ft_strdup("Test\n");
+	if (ret)
+	{
+		printf("%s", ret);
+		free(ret);
+	}
+	ret = ft_strdup("");
+	if (ret)
+	{
+		printf("%s", ret);
+		free(ret);
+	}
+	return 0;
+}
+
+#endif
