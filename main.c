@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:50:22 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/10/06 16:37:34 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/10/06 18:00:41 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,13 @@ int main() {
 	printf("*** ft_strlen ***\n");
 	printf("Should be 4 -> %zu\n", strlen("Test"));
 	printf("Should be 0 -> %zu\n", strlen(""));
+	//printf("Should be 0 -> %zu\n", strlen(NULL));
 
 	printf("\n*** ft_strcpy ***\n");
 	char	dest[10];
 	printf("|%s|\n|%s|\n", strcpy(dest, "Test"), dest);
 	printf("|%s|\n|%s|\n", strcpy(dest, ""), dest);
+	//printf("|%s|\n|%s|\n", strcpy(dest, NULL), dest);
 
 	printf("\n*** ft_strcmp ***\n");
 	printf("Should be 0 -> %d\n", strcmp("Test", "Test"));
@@ -36,11 +38,14 @@ int main() {
 	printf("Should be 1 -> %d\n", strcmp("Test", "Tes"));
 	printf("Should be -1 -> %d\n", strcmp("", "Test"));
 	printf("Should be 0 -> %d\n", strcmp("", ""));
+	//printf("Should be 0 -> %d\n", strcmp("Test", NULL));
 
 	printf("\n*** ft_write ***\n");
 	printf("ret = %zd\n", write(1, "Test\n", 3));
 	printf("errno = %d\n", errno);
 	printf("ret = %zd\n", write(-1, "Test\n", 5));
+	printf("errno = %d\n", errno);
+	printf("ret = %zd\n", write(1, NULL, 5));
 	printf("errno = %d\n", errno);
 
 	printf("\n*** ft_read ***\n");
@@ -48,6 +53,8 @@ int main() {
 	printf("ret = %zd\n", read(0, buf, 10));
 	printf("errno = %d\n", errno);
 	printf("ret = %zd\n", read(-1, buf, 10));
+	printf("errno = %d\n", errno);
+	printf("ret = %zd\n", read(0, NULL, 5));
 	printf("errno = %d\n", errno);
 
 	printf("\n*** ft_strdup ***\n");
@@ -64,6 +71,7 @@ int main() {
 		printf("%s", ret);
 		free(ret);
 	}
+	//ret = ft_strdup(NULL);
 	return 0;
 }
 
@@ -73,11 +81,13 @@ int main() {
 	printf("*** ft_strlen ***\n");
 	printf("Should be 4 -> %zu\n", ft_strlen("Test"));
 	printf("Should be 0 -> %zu\n", ft_strlen(""));
+	//printf("Should be 0 -> %zu\n", ft_strlen(NULL));
 
 	printf("\n*** ft_strcpy ***\n");
 	char	dest[10];
 	printf("|%s|\n|%s|\n", ft_strcpy(dest, "Test"), dest);
 	printf("|%s|\n|%s|\n", ft_strcpy(dest, ""), dest);
+	//printf("|%s|\n|%s|\n", ft_strcpy(dest, NULL), dest);
 
 	printf("\n*** ft_strcmp ***\n");
 	printf("Should be 0 -> %d\n", ft_strcmp("Test", "Test"));
@@ -86,11 +96,14 @@ int main() {
 	printf("Should be 1 -> %d\n", ft_strcmp("Test", "Tes"));
 	printf("Should be -1 -> %d\n", ft_strcmp("", "Test"));
 	printf("Should be 0 -> %d\n", ft_strcmp("", ""));
+	//printf("Should be 0 -> %d\n", ft_strcmp("Test", NULL));
 
 	printf("\n*** ft_write ***\n");
 	printf("ret = %zd\n", ft_write(1, "Test\n", 3));
 	printf("errno = %d\n", errno);
 	printf("ret = %zd\n", ft_write(-1, "Test\n", 5));
+	printf("errno = %d\n", errno);
+	printf("ret = %zd\n", ft_write(1, NULL, 5));
 	printf("errno = %d\n", errno);
 
 	printf("\n*** ft_read ***\n");
@@ -98,6 +111,8 @@ int main() {
 	printf("ret = %zd\n", ft_read(0, buf, 10));
 	printf("errno = %d\n", errno);
 	printf("ret = %zd\n", ft_read(-1, buf, 10));
+	printf("errno = %d\n", errno);
+	printf("ret = %zd\n", ft_read(0, NULL, 5));
 	printf("errno = %d\n", errno);
 
 	printf("\n*** ft_strdup ***\n");
@@ -114,6 +129,7 @@ int main() {
 		printf("%s", ret);
 		free(ret);
 	}
+	//ret = ft_strdup(NULL);
 	return 0;
 }
 

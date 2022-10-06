@@ -2,5 +2,6 @@ https://www.bencode.net/blob/nasmcheatsheet.pdf
 https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf
 https://cs.lmu.edu/~ray/notes/nasmtutorial/
 https://www.cs.uaf.edu/2017/fall/cs301/lecture/09_11_registers.html
+https://www.cs.uaf.edu/2010/fall/cs301/lecture/10_04_malloc.html#:~:text=Calling%20Malloc%20from%20Assembly%20Language,allocated%20bytes%20returned%20in%20rax.
 https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/
 https://filippo.io/making-system-calls-from-assembly-in-mac-os-x/
