@@ -1,17 +1,42 @@
 section .text
 	global _ft_list_sort
 
-; rdi = **begin, rsi = strcmp(s1, s2)
+; rdi = **begin, rsi = cmp(s1, s2)
 _ft_list_sort:
 	cmp	rdi, 0
 	je	_error			; if **begin == NULL, error
 	cmp	QWORD [rdi], 0
 	je	_error			; if *begin == NULL, error
 	cmp	rsi, 0
-	je	_error			; if strcmp == NULL, error
+	je	_error			; if cmp == NULL, error
+	mov	rax, 0
+	mov	r8, QWORD [rdi]	; save *begin in r8
+	mov	r11, rsi		; save cmp in rcx
+	jmp	_loop
 
+_loop:
+	cmp		QWORD [r8 + 8], 0
+	je		_exit				; if *tmp = NULL, it's sorted, _exit
+	mov		r9, QWORD [r8 + 8]	; r9 = tmp->next
+	push	rdi					; save **begin on the stack
+	mov		rdi, QWORD [r8]		; cpy tmp->data in rdi (1st arg for cmp)
+	mov		rsi, QWORD [r9]		; cpy tmp->next->data in rsi (2nd arg)
+	call	r11					; call cmp
+	pop		rdi					; restore **begin
+	cmp		rax, 0
+	jle		_next
+	jg		_switch
 
-	mov	rax, 4
+_next:
+	mov	r8, r9	; *tmp = tmp->next
+	jmp	_loop
+
+_switch:
+	mov	rax, 100
+	ret
+
+_exit:
+	mov	rax, 15
 	ret
 
 _error:
