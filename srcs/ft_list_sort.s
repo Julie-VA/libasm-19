@@ -1,15 +1,14 @@
 section .text
 	global _ft_list_sort
 
-; rdi = **begin, rsi = cmp(s1, s2)
+; rdi = **begin, rsi = (*cmp)(s1, s2)
 _ft_list_sort:
 	cmp		rdi, 0
-	je		_exit				; if **begin == NULL, error
+	je		_exit				; if **begin == NULL, _error
 	cmp		QWORD [rdi], 0
-	je		_exit				; if *begin == NULL, error
+	je		_exit				; if *begin == NULL, _error
 	cmp		rsi, 0
-	je		_exit				; if cmp == NULL, error
-	mov		rax, 0
+	je		_exit				; if cmp == NULL, _error
 	push	r12
 	push	r13
 	push	r14
@@ -27,8 +26,8 @@ _loop:
 	call	r14						; call cmp
 	pop		rdi						; restore **begin
 	cmp		rax, 0
-	jle		_next
-	jg		_switch
+	jle		_next					; if tmp->data <= tmp->next->data, _next
+	jg		_switch					; if tmp->data > tmp->next->data, _switch
 
 _next:
 	mov	r12, [r12 + 8]	; *tmp = tmp->next

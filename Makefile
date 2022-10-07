@@ -6,7 +6,7 @@
 #    By: rvan-aud <rvan-aud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/04 17:47:22 by rvan-aud          #+#    #+#              #
-#    Updated: 2022/10/06 19:01:24 by rvan-aud         ###   ########.fr        #
+#    Updated: 2022/10/07 16:36:47 by rvan-aud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRCS		= $(SRCS_DIR)/ft_read.s	\
 				$(SRCS_DIR)/ft_strlen.s	\
 				$(SRCS_DIR)/ft_write.s	\
 
-SRCS_BONUS	= $(SRCS_DIR)/ft_list_push_front.s \
+SRCS_BONUS	= $(SRCS_DIR)/ft_list_push_front.s	\
+				$(SRCS_DIR)/ft_list_remove_if.s	\
 				$(SRCS_DIR)/ft_list_size.s 		\
 				$(SRCS_DIR)/ft_list_sort.s 		\
 
