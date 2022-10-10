@@ -27,31 +27,31 @@ _base_check_dup_loop:
 	je	_base_check_valid		; if base[i] == 0, end of string
 	mov	r9b, [rsi + r8]			; cpy base[i] in r9b (8-bit sub register of r9)
 	cmp	BYTE [rsi + r12], r9b
-	je	_exit					; if base[base_len] == base[i], duplicate -> _exit
+	je	_error					; if base[base_len] == base[i], duplicate -> _error
 	jmp	_base_check_dup_inc
 
 _base_check_valid:
 	cmp BYTE [rsi + r12], 32
-	je	_exit					; if base[base_len] == ' ', _exit
+	je	_error					; if base[base_len] == ' ', _error
 	cmp	BYTE [rsi + r12], 43
-	je	_exit					; if base[base_len] == '+', _exit
+	je	_error					; if base[base_len] == '+', _error
 	cmp BYTE [rsi + r12], 45
-	je	_exit					; if base[base_len] == '-', _exit
+	je	_error					; if base[base_len] == '-', _error
 	cmp BYTE [rsi + r12], 9
-	je	_exit					; if base[base_len] == '\t', _exit
+	je	_error					; if base[base_len] == '\t', _error
 	cmp BYTE [rsi + r12], 10
-	je	_exit					; if base[base_len] == '\n', _exit
+	je	_error					; if base[base_len] == '\n', _error
 	cmp BYTE [rsi + r12], 11
-	je	_exit					; if base[base_len] == '\v', _exit
+	je	_error					; if base[base_len] == '\v', _error
 	cmp BYTE [rsi + r12], 12
-	je	_exit					; if base[base_len] == '\f', _exit
+	je	_error					; if base[base_len] == '\f', _error
 	cmp BYTE [rsi + r12], 13
-	je	_exit					; if base[base_len] == '\r', _exit
+	je	_error					; if base[base_len] == '\r', _error
 	jmp	_base_len_inc
 
 _base_check_end:
 	cmp	r12, 2
-	jl	_exit				; if base_len < 2, _exit
+	jl	_error				; if base_len < 2, _error
 	mov	r8, 0
 	jmp	_skip_whitespaces
 
@@ -60,17 +60,17 @@ _skip_whitespaces_inc:
 
 _skip_whitespaces:
 	cmp BYTE [rdi + r8], 32
-	je	_skip_whitespaces_inc	; if str[i] == ' ', _exit
+	je	_skip_whitespaces_inc	; if str[i] == ' ', loop again
 	cmp BYTE [rdi + r8], 9
-	je	_skip_whitespaces_inc	; if str[i] == '\t', _exit
+	je	_skip_whitespaces_inc	; if str[i] == '\t', loop again
 	cmp BYTE [rdi + r8], 10
-	je	_skip_whitespaces_inc	; if str[i] == '\n', _exit
+	je	_skip_whitespaces_inc	; if str[i] == '\n', loop again
 	cmp BYTE [rdi + r8], 11
-	je	_skip_whitespaces_inc	; if str[i] == '\v', _exit
+	je	_skip_whitespaces_inc	; if str[i] == '\v', loop again
 	cmp BYTE [rdi + r8], 12
-	je	_skip_whitespaces_inc	; if str[i] == '\f', _exit
+	je	_skip_whitespaces_inc	; if str[i] == '\f', loop again
 	cmp BYTE [rdi + r8], 13
-	je	_skip_whitespaces_inc	; if str[i] == '\r', _exit
+	je	_skip_whitespaces_inc	; if str[i] == '\r', loop again
 	jmp	_check_sign
 
 _is_neg:
@@ -87,12 +87,12 @@ _check_sign:
 
 _atoi_loop:
 	cmp	BYTE [rdi + r8], 0
-	je	_end				; if str[i] == 0, end of string
+	je	_exit				; if str[i] == 0, end of string
 	mov	r9, 0				; j = 0
 
 _atoi_base:
 	cmp	BYTE [rsi + r9], 0
-	je	_exit						; if base[j] == 0, end of string -> digit is not in the base
+	je	_error						; if base[j] == 0, end of string -> digit is not in the base
 	mov	r10b, [rsi + r9]			; cpy base[j], in r10b
 	cmp	BYTE [rdi + r8], r10b
 	je	_add_res					; if str[i] == base[j], calculate
@@ -100,19 +100,19 @@ _atoi_base:
 	jmp	_atoi_base
 
 _add_res:
-	mul	r12		; res *= base_len
-	add	rax, r9	; res += j
-	inc	r8		; i++
+	mul	r12			; res *= base_len
+	add	rax, r9		; res += j
+	inc	r8			; i++
 	jmp	_atoi_loop
 
-_end:
-	cmp	r13, 0
-	je	_return	; if sign is +, return
-	neg	rax
+_error:
+	mov	rax, 0
 	jmp	_return
 
 _exit:
-	mov	rax, 0
+	cmp	r13, 0
+	je	_return
+	neg	rax		; rax *= -1
 
 _return:
 	pop	r12
