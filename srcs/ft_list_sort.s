@@ -18,7 +18,7 @@ _ft_list_sort:
 
 _loop:
 	cmp		QWORD [r12 + 8], 0
-	je		_restore				; if *tmp = NULL, it's sorted, _restore
+	je		_restore				; if tmp->next = NULL, it's sorted, _restore
 	mov		r13, QWORD [r12 + 8]	; r13 = tmp->next
 	push	rdi						; save **begin on the stack
 	mov		rdi, QWORD [r12]		; cpy tmp->data in rdi (1st arg for cmp)

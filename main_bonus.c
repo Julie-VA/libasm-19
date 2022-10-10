@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:03:14 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/10/07 17:20:31 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:34:14 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,21 @@ int	main()
 	ft_list_push_front(&sort_test, strdup("3"));
 	ft_list_push_front(&sort_test, strdup("4"));
 	ft_list_push_front(&sort_test, strdup("2"));
-	ft_list_push_front(&sort_test, strdup("4"));
 	ft_list_push_front(&sort_test, strdup("5"));
 	print_list(sort_test);
 	ft_list_sort(&sort_test, &strcmp);
 	print_list(sort_test);
 
 	printf("\n*** ft_list_remove_if ***\n");
-	int a = ft_list_remove_if(&sort_test, strdup("5"), &strcmp);
-	printf("%d\n", a);
+	printf("\nRemoved 1 and 2:");
+	ft_list_remove_if(&sort_test, strdup("1"), &strcmp, &free);
+	ft_list_remove_if(&sort_test, strdup("2"), &strcmp, &free);
+	print_list(sort_test);
+	printf("\nPushed 4:");
+	ft_list_push_front(&sort_test, strdup("4"));
+	print_list(sort_test);
+	printf("\nRemoved 4:");
+	ft_list_remove_if(&sort_test, strdup("4"), &strcmp, &free);
+	print_list(sort_test);
 	return 0;
 }
