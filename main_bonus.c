@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:03:14 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/10/10 18:59:51 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/10/10 19:08:14 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,6 @@ int	main()
 
 	//ft_lstclear(&sort_test);
 
-	printf("%d\n", ft_atoi_base("42", "012345"));
+	printf("%d\n", ft_atoi_base("42", "01234"));
 	return 0;
 }

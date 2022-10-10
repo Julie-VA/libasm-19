@@ -86,7 +86,7 @@ _check_sign:
 	je	_is_pos					; if str[i] == '+', _is_pos
 
 _atoi_loop:
-	cmp	BYTE [rdi + 8], 0
+	cmp	BYTE [rdi + r8], 0
 	je	_end				; if str[i] == 0, end of string
 	mov	r9, 0				; j = 0
 
