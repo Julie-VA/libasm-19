@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 17:22:00 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/10/10 16:38:00 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:50:11 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ typedef struct s_list
 	struct s_list *next;
 }	t_list;
 
+int 	ft_atoi_base(char *str, char *base);
 void	ft_list_push_front(t_list **, void *);
+void	ft_list_remove_if(t_list **, void *, int (*)(), void (*)(void *));
 int		ft_list_size(t_list *);
 void	ft_list_sort(t_list **, int (*)());
-void	ft_list_remove_if(t_list **, void *, int (*)(), void (*)(void *));

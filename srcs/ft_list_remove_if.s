@@ -1,6 +1,5 @@
 section .text
 	global _ft_list_remove_if
-	extern _free
 
 ; rdi = **begin, rsi = *data, rdx = (*cmp)(s1, s2), rcx = (*free)(*tmp)
 _ft_list_remove_if:

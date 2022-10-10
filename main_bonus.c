@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:03:14 by rvan-aud          #+#    #+#             */
-/*   Updated: 2022/10/10 16:34:14 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2022/10/10 18:59:51 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,20 @@ void	print_list(t_list *lst)
 		printf("%s\n", tmp->data);
 }
 
+void	ft_lstclear(t_list **list)
+{
+	t_list	*tmp;
+
+	while (*list)
+	{
+		tmp = (*list)->next;
+		if ((*list)->data)
+			free((*list)->data);
+		free(*list);
+		*list = tmp;
+	}
+}
+
 int	main()
 {
 	//t_list	lst;
@@ -35,7 +49,9 @@ int	main()
 	//print_list(&lst);
 
 	//printf("\n*** ft_list_push_front ***\n");
-	//t_list	*push_test = &lst;
+	//t_list	*push_test = malloc(sizeof(t_list));
+	//push_test->data = strdup("A");
+	//push_test->next = NULL;
 	//ft_list_push_front(&push_test, strdup("B"));
 	//print_list(push_test);
 	//printf("Size of lst = %d\n", ft_list_size(push_test));
@@ -48,28 +64,34 @@ int	main()
 	//print_list(push_test);
 	//printf("Size of lst = %d\n", ft_list_size(push_test));
 
-	printf("\n*** ft_list_sort ***\n");
-	t_list	*sort_test = malloc(sizeof(t_list));
-	sort_test->data = strdup("1");
-	sort_test->next = NULL;
-	ft_list_push_front(&sort_test, strdup("3"));
-	ft_list_push_front(&sort_test, strdup("4"));
-	ft_list_push_front(&sort_test, strdup("2"));
-	ft_list_push_front(&sort_test, strdup("5"));
-	print_list(sort_test);
-	ft_list_sort(&sort_test, &strcmp);
-	print_list(sort_test);
+	//ft_lstclear(&push_test);
 
-	printf("\n*** ft_list_remove_if ***\n");
-	printf("\nRemoved 1 and 2:");
-	ft_list_remove_if(&sort_test, strdup("1"), &strcmp, &free);
-	ft_list_remove_if(&sort_test, strdup("2"), &strcmp, &free);
-	print_list(sort_test);
-	printf("\nPushed 4:");
-	ft_list_push_front(&sort_test, strdup("4"));
-	print_list(sort_test);
-	printf("\nRemoved 4:");
-	ft_list_remove_if(&sort_test, strdup("4"), &strcmp, &free);
-	print_list(sort_test);
+	//printf("\n*** ft_list_sort ***\n");
+	//t_list	*sort_test = malloc(sizeof(t_list));
+	//sort_test->data = strdup("1");
+	//sort_test->next = NULL;
+	//ft_list_push_front(&sort_test, strdup("3"));
+	//ft_list_push_front(&sort_test, strdup("4"));
+	//ft_list_push_front(&sort_test, strdup("2"));
+	//ft_list_push_front(&sort_test, strdup("5"));
+	//print_list(sort_test);
+	//ft_list_sort(&sort_test, &strcmp);
+	//print_list(sort_test);
+
+	//printf("\n*** ft_list_remove_if ***\n");
+	//printf("\nRemoved 1 and 2:");
+	//ft_list_remove_if(&sort_test, strdup("1"), &strcmp, &free);
+	//ft_list_remove_if(&sort_test, strdup("2"), &strcmp, &free);
+	//print_list(sort_test);
+	//printf("\nPushed 4:");
+	//ft_list_push_front(&sort_test, strdup("4"));
+	//print_list(sort_test);
+	//printf("\nRemoved 4:");
+	//ft_list_remove_if(&sort_test, strdup("4"), &strcmp, &free);
+	//print_list(sort_test);
+
+	//ft_lstclear(&sort_test);
+
+	printf("%d\n", ft_atoi_base("42", "012345"));
 	return 0;
 }
