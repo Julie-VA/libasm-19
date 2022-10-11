@@ -6,6 +6,9 @@ section .text
 	extern ___error
 
 _ft_strdup:
+	;original strdup doesn't protect for NULL strings, but that's how you'd do it
+	;cmp	rdi, 0
+	je	_error	; if rdi == 0, _error
 	call	_ft_strlen	; call ft_strlen, len of src is in rax
 	push	rdi			; push and save rdi on the stack
 	inc		rax			; increment rax for the \0

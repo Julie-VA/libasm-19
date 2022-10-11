@@ -26,16 +26,26 @@ _ft_list_remove_if:
 _loop:
 	cmp		r12, 0
 	je		_restore				; if *tmp = NULL, we're at the end, _restore
+	cmp		r13, 0
+	je		_cmp_null				; if *data = NULL, compare differently
 	push	rdi
 	mov		rdi, QWORD [r12]		; cpy tmp->data in rdi (1st arg for cmp)
 	mov		rsi, r13				; cpy *data in rsi (2nd arg)
 	call	r14						; call cmp
+
+_end_cmp:
 	pop		rdi						; restore **begin
 	cmp		rax, 0
 	je		_delete_elem			; if rax == 0, that means tmp->data == data
 	mov		rbx, r12				; cpy current *tmp in rbx
 	mov		r12, QWORD [r12 + 8]	; *tmp = tmp->next
 	jmp		_loop
+
+_cmp_null:
+	push	rdi
+	xor		rdi, rsi	; if both are NULL, rdi = 0. If not then rdi = 1
+	mov		rax, rdi	; set rax to result for _end_cmp
+	jmp		_end_cmp
 
 _delete_elem:
 	cmp		rbx, 0

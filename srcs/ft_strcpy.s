@@ -2,6 +2,11 @@ section .text
 	global _ft_strcpy
 
 _ft_strcpy:
+	;original strcpy doesn't protect for NULL strings, but that's how you'd do it
+	;cmp	rdi, 0
+	;je	_error	; if rdi == 0, _error
+	;cmp	rsi, 0
+	;je	_error	; if rsi == 0, _error
 	mov	rax, 0 ; rax = 0
 	jmp	_loop
 
@@ -16,4 +21,8 @@ _loop:
 _exit:
 	mov	BYTE [rdi + rax], 0	; add \0 at the end of dest
 	mov	rax, rdi			; cpy dest in the returned string
+	ret
+
+_error:
+	mov	rax, 0
 	ret

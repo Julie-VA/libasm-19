@@ -6,7 +6,7 @@
 #    By: rvan-aud <rvan-aud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/04 17:47:22 by rvan-aud          #+#    #+#              #
-#    Updated: 2022/10/10 16:49:35 by rvan-aud         ###   ########.fr        #
+#    Updated: 2022/10/11 14:12:34 by rvan-aud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,8 +54,8 @@ $(NAME):	$(OBJS)
 			ar rcs $(NAME_LIB) $(OBJS)
 			$(CC) $(CFLAGS) main.c $(NAME_LIB) -o $(NAME)
 
-bonus:		$(OBJS) $(OBJS_BONUS)
-			ar rcs $(NAME_LIB) $(OBJS) $(OBJS_BONUS)
+bonus:		$(OBJS_BONUS)
+			ar rcs $(NAME_LIB) $(OBJS_BONUS)
 			$(CC) $(CFLAGS) main_bonus.c $(NAME_LIB) -o $(NAME_BONUS)
 
 clean:
